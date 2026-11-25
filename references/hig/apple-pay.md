@@ -9,6 +9,28 @@ Apple Pay is a secure, easy way to make payments for physical goods and services
 
 ---
 
+## Contents
+
+- [Offering Apple Pay](#offering-apple-pay)
+- [Streamlining checkout](#streamlining-checkout)
+  - [Customizing the payment sheet](#customizing-the-payment-sheet)
+- [Displaying a website icon](#displaying-a-website-icon)
+- [Handling problems](#handling-problems)
+  - [Data validation errors](#data-validation-errors)
+  - [Payment processing problems](#payment-processing-problems)
+- [Supporting subscriptions](#supporting-subscriptions)
+- [Supporting donations](#supporting-donations)
+- [Using Apple Pay buttons](#using-apple-pay-buttons)
+  - [Button types](#button-types)
+  - [Button styles](#button-styles)
+  - [Button size and position](#button-size-and-position)
+  - [Apple Pay mark](#apple-pay-mark)
+- [Referring to Apple Pay](#referring-to-apple-pay)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+
+---
+
 Use Apple Pay to sell physical goods like groceries, clothing, and appliances; for services such as club memberships, hotel reservations, and event tickets; and for donations. Apps and websites that accept Apple Pay display it as an available payment option and include an Apple Pay button in the purchasing flow that people use to bring up a payment sheet.
 
 During checkout, the payment sheet can show the credit or debit card linked to Apple Pay, purchase amount (including tax and fees), shipping options, contact information, and other relevant details. People make any necessary adjustments and then authorize payment and complete the purchase using credentials stored securely on the device.

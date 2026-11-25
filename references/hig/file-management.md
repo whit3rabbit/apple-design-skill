@@ -9,6 +9,19 @@ Some apps can support documents and files that people expect to manage throughou
 
 ---
 
+## Contents
+
+- [Creating and opening files](#creating-and-opening-files)
+- [Saving work](#saving-work)
+- [Quick Look previews](#quick-look-previews)
+- [Platform considerations](#platform-considerations)
+  - [Mobile (iOS, iPadOS)](#mobile-ios-ipados)
+  - [Desktop (macOS)](#desktop-macos)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 Document-based apps — such as Pages, Keynote, Photos, and Preview — help people create, edit, and save documents and files, often providing customized ways for people to browse for content they want to open in the app.
 
 People also expect to browse documents without first opening a document-based app. On a Mac, for example, people use the Finder to access the macOS file system; on iPhone, iPad, and Apple Vision Pro, people use the Files app to manage the documents and files on their device. In watchOS and tvOS, people don’t typically create, edit, or manage documents, so these systems don’t provide a document-browsing interface.

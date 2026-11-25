@@ -8,6 +8,21 @@ Inclusive apps and games put people first by prioritizing respectful communicati
 
 ---
 
+## Contents
+
+- [Inclusive by design](#inclusive-by-design)
+- [Welcoming language](#welcoming-language)
+- [Being approachable](#being-approachable)
+- [Gender identity](#gender-identity)
+- [People and settings](#people-and-settings)
+- [Avoiding stereotypes](#avoiding-stereotypes)
+- [Accessibility](#accessibility)
+- [Languages](#languages)
+- [Platform considerations](#platform-considerations)
+- [Related guidelines](#related-guidelines)
+
+---
+
 To help you design an inclusive app or game, consider the following goals as you review the words and images you use and the experiences you offer.
 
 As with all design, designing an inclusive app is an iterative process that takes time to get right. Throughout the process, be prepared to examine your assumptions about how other people think and feel and be open to evolving knowledge and understanding.

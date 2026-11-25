@@ -9,6 +9,21 @@ Privacy is paramount: it’s critical to be transparent about the privacy-relate
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+- [Requesting permission](#requesting-permission)
+  - [Pre-alert screens, windows, or views](#pre-alert-screens-windows-or-views)
+  - [Tracking requests](#tracking-requests)
+- [Location button](#location-button)
+- [Protecting data](#protecting-data)
+- [Platform considerations](#platform-considerations)
+  - [Desktop (macOS)](#desktop-macos)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 People use their devices in very personal ways and they expect apps to help them preserve their privacy.
 
 When you submit a new or updated app, you must provide details about your privacy practices and the privacy-relevant data you collect so the App Store can display the information on your product page. (You can manage this information at any time in [App Store Connect](https://help.apple.com/app-store-connect/#/dev1b4647c5b).) People use the privacy details on your product page to make an informed decision before they download your app. To learn more, see [App privacy details on the App Store](https://developer.apple.com/app-store/app-privacy-details/).

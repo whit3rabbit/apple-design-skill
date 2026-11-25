@@ -9,6 +9,17 @@ A physical keyboard can be an essential input device for entering text, playing 
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+- [Standard keyboard shortcuts](#standard-keyboard-shortcuts)
+- [Custom keyboard shortcuts](#custom-keyboard-shortcuts)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 People can connect a physical keyboard to any device except Apple Watch. Mac users tend to use a physical keyboard all the time and iPad users often do. Many games work well with a physical keyboard, and people can prefer using one instead of a [virtual keyboard](virtual-keyboards.md) when entering a lot of text.
 
 Keyboard users often appreciate using keyboard shortcuts to speed up their interactions with apps and games. A *keyboard shortcut* is a combination of a primary key and one or more modifier keys (Control, Option, Shift, and Command) that map to a specific command. A keyboard shortcut in a game — called a *key binding* — often consists of a single key.

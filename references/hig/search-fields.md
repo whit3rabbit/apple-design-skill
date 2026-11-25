@@ -9,6 +9,18 @@ A search field lets people search a collection of content for specific terms the
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+- [Scope bars and tokens](#scope-bars-and-tokens)
+- [Platform considerations](#platform-considerations)
+  - [Phone (iOS)](#phone-ios)
+  - [Tablet and desktop (iPadOS, macOS)](#tablet-and-desktop-ipados-macos)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 A search field is an editable text field that displays a Search icon, a Clear button, and placeholder text where people can enter what they are searching for. Search fields can use a [scope bar](#scope-bars-and-tokens) as well as [tokens](#scope-bars-and-tokens) to help filter and refine the scope of their search. Across each platform, there are different patterns for accessing search based on the goals and design of your app.
 
 For developer guidance, see [Adding a search interface to your app](https://developer.apple.com/documentation/swiftui/adding-a-search-interface-to-your-app); for guidance related to systemwide search, see [Searching](searching.md).

@@ -9,6 +9,21 @@ SF Symbols provides thousands of consistent, highly configurable symbols that in
 
 ---
 
+## Contents
+
+- [Rendering modes](#rendering-modes)
+- [Gradients](#gradients)
+- [Variable color](#variable-color)
+- [Weights and scales](#weights-and-scales)
+- [Design variants](#design-variants)
+- [Animations](#animations)
+- [Custom symbols](#custom-symbols)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 You can use a symbol to convey an object or concept wherever interface icons can appear, such as in toolbars, tab bars, context menus, and within text.
 
 Availability of individual symbols and features varies based on the version of the system you’re targeting. Symbols and symbol features introduced in a given year aren’t available in earlier operating systems.
@@ -127,7 +142,7 @@ The arrangement of layers within a symbol determines how variable color behaves 
 
 ## Custom symbols
 
-If you need a symbol that SF Symbols doesn’t provide, you can create your own. To create a custom symbol, first export the template for a symbol that’s similar to the design you want, then use a vector-editing tool to modify it. For developer guidance, see [Creating custom symbols](https://developer.apple.com/documentation/technologyoverviews/custom-sf-symbols).
+If you need a symbol that SF Symbols doesn’t provide, you can create your own. To create a custom symbol, first export the template for a symbol that’s similar to the design you want, then use a vector-editing tool to modify it. For developer guidance, see [Creating custom SF Symbols](https://developer.apple.com/documentation/technologyoverviews/creating-custom-sf-symbols).
 
 > **Important:** SF Symbols includes copyrighted symbols that depict Apple products and features. You can display these symbols in your app, but you can’t customize them. To help you identify a noncustomizable symbol, the SF Symbols app badges it with an Info icon; to help you use the symbol correctly, the inspector pane describes its usage restrictions.
 

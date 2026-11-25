@@ -9,6 +9,20 @@ People can use Apple In-App Purchase to pay for digital goods and services, like
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+  - [Supporting Family Sharing](#supporting-family-sharing)
+  - [Providing help](#providing-help)
+- [Auto-renewable subscriptions](#auto-renewable-subscriptions)
+  - [Making signup effortless](#making-signup-effortless)
+  - [Supporting offer codes](#supporting-offer-codes)
+  - [Helping people manage their subscriptions](#helping-people-manage-their-subscriptions)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+
+---
+
 You can also promote and offer your Apple In-App Purchase items directly through the App Store.
 
 > **Tip:** Apple In-App Purchase and [Apple Pay](apple-pay.md) are different technologies that support different use cases. Use Apple In-App Purchase to sell virtual goods in your app, such as premium content for your app and subscriptions for digital content. Use Apple Pay in your app to sell physical goods like groceries, clothing, and appliances; for services such as club memberships, hotel reservations, and event tickets; and for donations.

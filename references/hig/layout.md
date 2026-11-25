@@ -9,6 +9,19 @@ A consistent layout that adapts across display sizes, orientations, and multitas
 
 ---
 
+## Contents
+
+- [Visual hierarchy](#visual-hierarchy)
+- [Adaptability](#adaptability)
+  - [Size classes](#size-classes)
+- [Guides and safe areas](#guides-and-safe-areas)
+- [Platform considerations](#platform-considerations)
+  - [Desktop (macOS)](#desktop-macos)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 Your layout provides the structure for people to understand your content from the moment they open your app. Familiar relationships between controls and content let people use and discover features right away, and make your design feel at home on every platform.
 
 Apple provides templates and layout guides that can help you integrate Apple technologies and design your apps and games to run on all Apple platforms. See [Apple Design Resources](https://developer.apple.com/design/resources/).

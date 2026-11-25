@@ -9,6 +9,21 @@ Apple Pencil helps make drawing, handwriting, and marking effortless and natural
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+- [Hover](#hover)
+- [Double tap](#double-tap)
+- [Squeeze](#squeeze)
+- [Barrel roll](#barrel-roll)
+- [Scribble](#scribble)
+- [Custom drawing](#custom-drawing)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 Apple Pencil is a versatile, intuitive tool for iPad apps that offers pixel‑level precision when jotting notes, sketching, painting, marking up documents, and more. Scribble lets people use Apple Pencil to enter text in any text field through fast, private, on-device handwriting recognition.
 
 For details on Apple Pencil features and compatibility, see [Apple Pencil](https://www.apple.com/apple-pencil/).

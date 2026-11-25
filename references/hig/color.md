@@ -9,6 +9,24 @@ Judicious use of color can enhance communication, evoke your brand, provide visu
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+- [Inclusive color](#inclusive-color)
+- [System colors](#system-colors)
+- [Liquid Glass color](#liquid-glass-color)
+- [Color management](#color-management)
+- [Platform considerations](#platform-considerations)
+  - [Mobile (iOS, iPadOS)](#mobile-ios-ipados)
+  - [Desktop (macOS)](#desktop-macos)
+- [Specifications](#specifications)
+  - [System colors](#system-colors-1)
+  - [iOS, iPadOS system gray colors](#ios-ipados-system-gray-colors)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 The system defines colors that look good on various backgrounds and appearance modes, and can automatically adapt to vibrancy and accessibility settings. Using system colors is a convenient way to make your experience feel at home on the device.
 
 You may also want to use custom colors to enhance the visual experience of your app or game and express its unique personality. The following guidelines can help you use color in ways that people appreciate, regardless of whether you use system-defined or custom colors.

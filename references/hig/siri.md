@@ -9,6 +9,18 @@ People use Siri to help them with the things they need to find, know, or do ever
 
 ---
 
+## Contents
+
+- [Getting your app to work with Siri](#getting-your-app-to-work-with-siri)
+  - [Sharing contextual information](#sharing-contextual-information)
+- [Best practices](#best-practices)
+- [Customizing your app’s experience with Siri](#customizing-your-apps-experience-with-siri)
+- [Editorial guidelines](#editorial-guidelines)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 Siri is a personal assistant that helps people get information and perform quick actions throughout the system and the apps they use. People interact with Siri in a variety of ways, like using their voice, swiping down from the Dynamic Island, or in the Siri app.
 
 On supported devices, Siri AI introduces a version of Siri powered by Apple Intelligence. When an app integrates its content and features with Apple Intelligence, people can use the natural language awareness and contextual understanding of Siri to initiate the app’s actions from anywhere in the system, interact with content on screen, and quickly reach features that would otherwise require navigating deep into the app.

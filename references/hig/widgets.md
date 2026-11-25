@@ -9,6 +9,33 @@ A widget provides quick access to essential information and focused interactions
 
 ---
 
+## Contents
+
+- [Anatomy](#anatomy)
+  - [System family widgets](#system-family-widgets)
+  - [Accessory widgets](#accessory-widgets)
+  - [Appearances](#appearances)
+- [Best practices](#best-practices)
+  - [Updating widget content](#updating-widget-content)
+  - [Adding interactivity](#adding-interactivity)
+  - [Choosing margins and padding](#choosing-margins-and-padding)
+  - [Displaying text in widgets](#displaying-text-in-widgets)
+  - [Using color](#using-color)
+- [Rendering modes](#rendering-modes)
+  - [Full-color](#full-color)
+  - [Accented](#accented)
+  - [Vibrant](#vibrant)
+- [Previews and placeholders](#previews-and-placeholders)
+- [Platform considerations](#platform-considerations)
+  - [Mobile (iOS, iPadOS)](#mobile-ios-ipados)
+- [Specifications](#specifications)
+  - [iOS dimensions](#ios-dimensions)
+  - [iPadOS dimensions](#ipados-dimensions)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 Widgets help people organize and personalize their devices by displaying timely, glanceable content and offering specific functionality. They appear in various contexts for a consistent experience across platforms. For example, a person might place a Weather widget:
 
 - On the Home Screen and Lock Screen of their iPhone and iPad

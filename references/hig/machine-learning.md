@@ -9,6 +9,30 @@ Machine learning enables apps and games to learn from data and usage patterns, l
 
 ---
 
+## Contents
+
+- [Planning your design](#planning-your-design)
+- [The role of machine learning in your app](#the-role-of-machine-learning-in-your-app)
+  - [Critical or complementary](#critical-or-complementary)
+  - [Private or public](#private-or-public)
+  - [Proactive or reactive](#proactive-or-reactive)
+  - [Visible or invisible](#visible-or-invisible)
+  - [Dynamic or static](#dynamic-or-static)
+- [Explicit feedback](#explicit-feedback)
+- [Implicit feedback](#implicit-feedback)
+- [Calibration](#calibration)
+- [Mistakes](#mistakes)
+- [Corrections](#corrections)
+- [Multiple options](#multiple-options)
+- [Confidence](#confidence)
+- [Attribution](#attribution)
+- [Limitations](#limitations)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 In addition to providing familiar features like image recognition and content recommendations, your app can use machine learning to forge deep connections with people and help them accomplish more with less effort.
 
 For related guidance on how to use machine learning models to enable intelligent experiences, see [Generative AI](generative-ai.md).

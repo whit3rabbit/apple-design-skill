@@ -8,6 +8,18 @@ Sign in with Apple provides a fast, private way to sign into apps and websites, 
 
 ---
 
+## Contents
+
+- [Offering Sign in with Apple](#offering-sign-in-with-apple)
+- [Collecting data](#collecting-data)
+- [Displaying buttons](#displaying-buttons)
+  - [Using the system-provided buttons](#using-the-system-provided-buttons)
+  - [Creating a custom Sign in with Apple button](#creating-a-custom-sign-in-with-apple-button)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+
+---
+
 Supporting Sign in with Apple lets people use the Apple Account they already have to sign in or sign up, and skip filling out forms, verifying email addresses, and choosing passwords. In cases where you choose to ask for a name and email address, people have the option to share a unique, random email address that automatically relays messages to their personal email address. For developer guidance, see [Authentication Services](https://developer.apple.com/documentation/authenticationservices).
 
 You can offer Sign in with Apple in every version of your app or website across all platforms — including non-Apple platforms.

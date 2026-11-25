@@ -9,6 +9,28 @@ An App Clip is a lightweight version of your app or game that provides an on-the
 
 ---
 
+## Contents
+
+- [Designing your App Clip](#designing-your-app-clip)
+  - [Preserving privacy](#preserving-privacy)
+  - [Showcasing your app](#showcasing-your-app)
+  - [Limiting notifications](#limiting-notifications)
+  - [Creating App Clips for businesses](#creating-app-clips-for-businesses)
+- [Creating content for an App Clip card](#creating-content-for-an-app-clip-card)
+- [App Clip Codes](#app-clip-codes)
+  - [Interacting with App Clip Codes](#interacting-with-app-clip-codes)
+  - [Displaying App Clip Codes](#displaying-app-clip-codes)
+  - [Using clear messaging](#using-clear-messaging)
+  - [Customizing your App Clip Code](#customizing-your-app-clip-code)
+- [Printing guidelines](#printing-guidelines)
+  - [Verifying your printer’s calibration](#verifying-your-printers-calibration)
+- [Legal requirements](#legal-requirements)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 App Clips deliver an experience from your app or game without requiring people to download the full app from the App Store. App Clips focus on a fast solution to a task or contain a demo that showcases the full app or game, and they remain on the device for a limited amount of time while preserving people’s privacy.
 
 People discover and launch App Clips in a variety of situations and contexts. At a physical location, people launch an App Clip by scanning an App Clip Code, NFC tag, or a QR code. An App Clip Code tends to be the best way for people to discover and launch your App Clip because its distinct design is immediately recognizable, and people trust it to offer a fast, secure way to launch an App Clip.

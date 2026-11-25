@@ -9,6 +9,19 @@ Accessible user interfaces empower everyone to have a great experience with your
 
 ---
 
+## Contents
+
+- [Vision](#vision)
+- [Hearing](#hearing)
+- [Mobility](#mobility)
+- [Speech](#speech)
+- [Cognitive](#cognitive)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 When you design for accessibility, you reach a larger audience and create a more inclusive experience. An accessible interface allows people to experience your app or game regardless of their capabilities or how they use their devices. Accessibility makes information and interactions available to everyone. An accessible interface is:
 
 - **Intuitive.** Your interface uses familiar and consistent interactions that make tasks straightforward to perform.

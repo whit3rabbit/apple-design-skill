@@ -9,6 +9,26 @@ An effective icon is a graphic asset that expresses a single concept in ways peo
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+- [Standard icons](#standard-icons)
+  - [Editing](#editing)
+  - [Selection](#selection)
+  - [Text formatting](#text-formatting)
+  - [Search](#search)
+  - [Sharing and exporting](#sharing-and-exporting)
+  - [Users and accounts](#users-and-accounts)
+  - [Ratings](#ratings)
+  - [Layer ordering](#layer-ordering)
+  - [Other](#other)
+- [Platform considerations](#platform-considerations)
+  - [Desktop (macOS)](#desktop-macos)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 Apps and games use a variety of simple icons to help people understand the items, actions, and modes they can choose. Unlike [app icons](app-icons.md), which can use rich visual details like shading, texturing, and highlighting to evoke the app’s personality, an *interface icon* typically uses streamlined shapes and touches of color to communicate a straightforward idea.
 
 You can design interface icons — also called *glyphs* — or you can choose symbols from the SF Symbols app, using them as-is or customizing them to suit your needs. Both interface icons and symbols use black and clear colors to define their shapes; the system can apply other colors to the black areas in each image. For guidance, see [SF Symbols](sf-symbols.md).

@@ -9,6 +9,21 @@ A menu reveals its options when people interact with it, making it a space-effic
 
 ---
 
+## Contents
+
+- [Labels](#labels)
+- [Icons](#icons)
+- [Organization](#organization)
+- [Submenus](#submenus)
+- [Toggled items](#toggled-items)
+- [In-game menus](#in-game-menus)
+- [Platform considerations](#platform-considerations)
+  - [Mobile (iOS, iPadOS)](#mobile-ios-ipados)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 Menus are ubiquitous in apps and games, so most people already know how to use them. Whether you use system-provided components or custom ones, people expect menus to behave in familiar ways. For example, people understand that opening a menu reveals one or more *menu items*, each of which represents a command, option, or state that affects the current selection or context. The guidance for labeling and organizing menu items applies to all types of menus in all experiences.
 
 > **Note:** Several system-provided components also include menus that support specific use cases. For example, a [pop-up button](pop-up-buttons.md) or [pull-down button](pull-down-buttons.md) can reveal a menu of options directly related to its action; a [context menu](context-menus.md) lets people access a small number of frequently used actions relevant to their current view or task; and in macOS and iPadOS, [menu bar](the-menu-bar.md) menus contain all the commands people can perform in the app or game.

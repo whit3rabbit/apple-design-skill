@@ -9,6 +9,27 @@ On a Mac or an iPad, the menu bar at the top of the screen displays the top-leve
 
 ---
 
+## Contents
+
+- [Anatomy](#anatomy)
+- [Best practices](#best-practices)
+- [App menu](#app-menu)
+- [File menu](#file-menu)
+- [Edit menu](#edit-menu)
+- [Format menu](#format-menu)
+- [View menu](#view-menu)
+- [App-specific menus](#app-specific-menus)
+- [Window menu](#window-menu)
+- [Help menu](#help-menu)
+- [Dynamic menu items](#dynamic-menu-items)
+- [Platform considerations](#platform-considerations)
+  - [Tablet (iPadOS)](#tablet-ipados)
+  - [Desktop (macOS)](#desktop-macos)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 Mac users are very familiar with the macOS menu bar, and they rely on it to help them learn what an app does and find the commands they need. To help your app or game feel at home in macOS, it’s essential to provide a consistent menu bar experience.
 
 Menu bar menus on iPad are similar to those on Mac, appearing in the same order and with familiar sets of menu items. When you adopt the menu structure that people expect from their experience on Mac, it helps them immediately understand and take advantage of the menu bar on iPad as well.

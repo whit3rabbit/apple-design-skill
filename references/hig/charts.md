@@ -8,6 +8,21 @@ Organize data in a chart to communicate information with clarity and visual appe
 
 ---
 
+## Contents
+
+- [Anatomy](#anatomy)
+- [Marks](#marks)
+- [Axes](#axes)
+- [Descriptive content](#descriptive-content)
+- [Best practices](#best-practices)
+- [Color](#color)
+- [Enhancing the accessibility of a chart](#enhancing-the-accessibility-of-a-chart)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 An effective chart highlights a few key pieces of information in a dataset, helping people gain insights and make decisions. For example, people might use a chart to:
 
 - Learn how upcoming weather conditions might affect their plans.

@@ -53,7 +53,7 @@ As you create or adapt a game for Apple platforms, learn how to integrate the fu
 | --- | --- | --- |
 | iOS | Touch | Game controller |
 | iPadOS | Touch | Game controller, keyboard, mouse, trackpad, Apple Pencil |
-| macOS | Keyboard, mouse, trackpad | Game controller |
+| macOS | Keyboard, mouse, trackpad | Game controller, touch |
 
 **Support physical game controllers, while also giving people alternatives.**  Every platform except watchOS supports physical game controllers. Although the presence of a game controller makes it straightforward to port controls from an existing game and handle complex control mappings, recognize that not every player can use a physical game controller. To make your game available to as many players as possible, also offer alternative ways to interact with your game. For guidance, see [Physical controllers](game-controls.md#physical-controllers).
 

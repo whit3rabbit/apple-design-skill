@@ -9,6 +9,20 @@ Explore fundamental principles that guide design across Apple platforms.
 
 ---
 
+## Contents
+
+- [Purpose](#purpose)
+- [Agency](#agency)
+- [Responsibility](#responsibility)
+- [Familiarity](#familiarity)
+- [Flexibility](#flexibility)
+- [Simplicity](#simplicity)
+- [Craft](#craft)
+- [Delight](#delight)
+- [Change log](#change-log)
+
+---
+
 The most successful and enduring designs are based on a deep understanding of how people think, feel, and interact with the world. The principles here reflect this reality, and form the foundation for guidance throughout the Human Interface Guidelines. There’s no one right way to apply these principles. Instead, they’re tools to help you weigh competing priorities and make key decisions on the path to a great design.
 
 **Purpose**

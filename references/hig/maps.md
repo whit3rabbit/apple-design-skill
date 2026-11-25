@@ -9,6 +9,19 @@ A map displays outdoor or indoor geographical data in your app or on your websit
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+- [Custom information](#custom-information)
+- [Place cards](#place-cards)
+  - [Displaying place cards in a map](#displaying-place-cards-in-a-map)
+  - [Adding place cards outside of a map](#adding-place-cards-outside-of-a-map)
+- [Indoor maps](#indoor-maps)
+- [Platform considerations](#platform-considerations)
+- [Change log](#change-log)
+
+---
+
 A map uses a familiar interface that supports much of the same functionality as the system-provided Maps app, such as zooming, panning, and rotation. A map can also include annotations and overlays and show routing information, and you can configure it to use a standard graphical view, a satellite image-based view, or a view that’s a hybrid of both.
 
 ## Best practices

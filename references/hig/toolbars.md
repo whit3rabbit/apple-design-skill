@@ -9,6 +9,22 @@ A toolbar provides convenient access to frequently used commands, controls, navi
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+- [Titles](#titles)
+- [Navigation](#navigation)
+- [Actions](#actions)
+- [Item groupings](#item-groupings)
+- [Platform considerations](#platform-considerations)
+  - [Phone (iOS)](#phone-ios)
+  - [Tablet (iPadOS)](#tablet-ipados)
+  - [Desktop (macOS)](#desktop-macos)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 A toolbar consists of one or more sets of controls arranged horizontally along the top or bottom edge of the view, grouped into logical sections.
 
 Toolbars act on content in the view, facilitate navigation, and help orient people in the app. They include three types of content:

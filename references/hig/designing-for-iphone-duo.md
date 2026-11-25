@@ -9,6 +9,21 @@ An app designed for iPhone Duo adapts seamlessly to both displays, providing a c
 
 ---
 
+## Contents
+
+- [Anatomy](#anatomy)
+  - [Device poses](#device-poses)
+- [Best practices](#best-practices)
+- [Dynamic layouts](#dynamic-layouts)
+  - [Reserved regions](#reserved-regions)
+  - [Split views](#split-views)
+  - [Arrangement views](#arrangement-views)
+- [Vertical controls](#vertical-controls)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 iPhone Duo has two displays, each with its own front-facing camera. A hinge in the center lets people open and close the device, and supports a variety of ways to hold and position it. This range of display sizes and poses makes an adaptable [layout](layout.md) more important than ever. If your app uses standard system components and you’ve designed it to support resizing, it automatically adapts to the device’s poses with little adjustment required. For developer guidance, see [Preparing your app for iPhone Duo](https://developer.apple.com/documentation/technologyoverviews/preparing-your-app-for-iphone-duo).
 
 *Illustrated: Outer display, Inner display.*

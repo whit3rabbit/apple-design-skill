@@ -9,6 +9,20 @@ A button initiates an instantaneous action.
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+- [Style](#style)
+- [Content](#content)
+- [Role](#role)
+- [Platform considerations](#platform-considerations)
+  - [Mobile (iOS, iPadOS)](#mobile-ios-ipados)
+  - [Desktop (macOS)](#desktop-macos)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 Versatile and highly customizable, buttons give people simple, familiar ways to do tasks in your app. In general, a button combines three attributes to clearly communicate its function:
 
 - **Style.** A visual style based on size, color, and shape.

@@ -9,6 +9,38 @@ A Live Activity lets people track the progress of an activity, event, or task at
 
 ---
 
+## Contents
+
+- [Anatomy](#anatomy)
+  - [Compact](#compact)
+  - [Minimal](#minimal)
+  - [Expanded](#expanded)
+  - [Lock Screen](#lock-screen)
+  - [StandBy](#standby)
+- [Best practices](#best-practices)
+  - [Creating Live Activity layouts](#creating-live-activity-layouts)
+  - [Choosing colors](#choosing-colors)
+  - [Adding transitions and animating content updates](#adding-transitions-and-animating-content-updates)
+  - [Offering interactivity](#offering-interactivity)
+  - [Starting, updating, and ending a Live Activity](#starting-updating-and-ending-a-live-activity)
+- [Presentation](#presentation)
+  - [Compact presentation](#compact-presentation)
+  - [Minimal presentation](#minimal-presentation)
+  - [Expanded presentation](#expanded-presentation)
+  - [Lock Screen presentation](#lock-screen-presentation)
+  - [StandBy presentation](#standby-presentation)
+- [CarPlay](#carplay)
+- [Platform considerations](#platform-considerations)
+  - [Desktop (macOS)](#desktop-macos)
+- [Specifications](#specifications)
+  - [CarPlay dimensions](#carplay-dimensions)
+  - [iOS dimensions](#ios-dimensions)
+  - [iPadOS dimensions](#ipados-dimensions)
+  - [macOS dimensions](#macos-dimensions)
+- [Change log](#change-log)
+
+---
+
 Live Activities let people keep track of tasks and events in glanceable locations across devices.  They go beyond push notifications, delivering frequent content and status updates over a few hours and letting people interact with the displayed information.
 
 For example, a Live Activity might show the remaining time until a food delivery order arrives, live in-game information for a soccer match, or real-time fitness metrics and interactive controls to pause or cancel a workout.

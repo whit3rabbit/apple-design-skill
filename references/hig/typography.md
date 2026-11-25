@@ -9,6 +9,26 @@ Your typographic choices can help you display legible text, convey an informatio
 
 ---
 
+## Contents
+
+- [Ensuring legibility](#ensuring-legibility)
+- [Conveying hierarchy](#conveying-hierarchy)
+- [Using system fonts](#using-system-fonts)
+- [Using custom fonts](#using-custom-fonts)
+- [Supporting Dynamic Type](#supporting-dynamic-type)
+- [Platform considerations](#platform-considerations)
+  - [Mobile (iOS, iPadOS)](#mobile-ios-ipados)
+  - [Desktop (macOS)](#desktop-macos)
+- [Specifications](#specifications)
+  - [iOS, iPadOS Dynamic Type sizes](#ios-ipados-dynamic-type-sizes)
+  - [iOS, iPadOS larger accessibility type sizes](#ios-ipados-larger-accessibility-type-sizes)
+  - [macOS built-in text styles](#macos-built-in-text-styles)
+  - [Tracking values](#tracking-values)
+- [Change log](#change-log)
+- [Related guidelines](#related-guidelines)
+
+---
+
 ## Ensuring legibility
 
 **Use font sizes that most people can read easily.** People need to be able to read your content at various viewing distances and under a variety of conditions. Follow the recommended default and minimum text sizes for each platform — for both custom and system fonts — to ensure your text is legible on all devices. Keep in mind that font weight can also impact how easy text is to read. If you use a custom font with a thin weight, aim for larger than the recommended sizes to increase legibility.

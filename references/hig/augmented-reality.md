@@ -8,6 +8,23 @@ Augmented reality (or AR) lets you deliver immersive, engaging experiences that 
 
 ---
 
+## Contents
+
+- [Best practices](#best-practices)
+- [Providing coaching](#providing-coaching)
+- [Helping people place objects](#helping-people-place-objects)
+- [Designing object interactions](#designing-object-interactions)
+- [Offering a multiuser experience](#offering-a-multiuser-experience)
+- [Reacting to real-world objects](#reacting-to-real-world-objects)
+- [Communicating with people](#communicating-with-people)
+- [Handling interruptions](#handling-interruptions)
+- [Suggesting problem resolutions](#suggesting-problem-resolutions)
+- [Icons and badges](#icons-and-badges)
+- [Platform considerations](#platform-considerations)
+- [Related guidelines](#related-guidelines)
+
+---
+
 Using the device’s camera to present the physical world onscreen live, your app can superimpose three-dimensional virtual objects, creating the illusion that these objects actually exist. Depending on the platform and the experiences your app offers, people can reorient the device to explore the objects from different angles, interact with objects using gestures and movement, and even join other people in multiuser AR experiences. For developer guidance, see [ARKit](https://developer.apple.com/documentation/arkit).
 
 **Offer AR features only on capable devices.** If your app’s primary purpose is AR, make your app available only to devices that support ARKit. If your app includes features that require specific AR capabilities, or if AR features are optional in your app, don’t show people an error if they try to use these features on a device that doesn’t support them; instead, simply avoid offering the feature on an unsupported device. For developer guidance, see [Verifying Device Support and User Permission](https://developer.apple.com/documentation/arkit/verifying-device-support-and-user-permission).
