@@ -7,6 +7,13 @@ Screenshots show what a reviewer saw. Code shows what every build will show, inc
 nobody captured. This file lists what to search for, why each match matters, and what replaces
 it. Every rule cites the guideline page it comes from; open that page before you flag anything.
 
+## Contents
+
+- [How to run it](#how-to-run-it)
+- [Apple Pay and payment marks](#apple-pay-and-payment-marks)
+- [Liquid Glass in code](#liquid-glass-in-code)
+- [iPhone Duo readiness in code](#iphone-duo-readiness-in-code)
+
 ## How to run it
 
 1. **Find the surfaces App Review will see.** That includes web pages the app opens. A checkout,
@@ -24,7 +31,7 @@ it. Every rule cites the guideline page it comes from; open that page before you
 App Store Review Guideline 4.9 requires apps that use Apple Pay to use its branding and interface
 elements as described in the Apple Pay Marketing Guidelines and the Human Interface Guidelines. A
 hand-drawn button or mark is a common rejection, and a convincing recreation is still a
-recreation. Load `hig/apple-pay.md` for every check below. Findings here are **Critical**,
+recreation. Load `references/hig/apple-pay.md` for every check below. Findings here are **Critical**,
 because they block release.
 
 ### What to search for
@@ -32,7 +39,7 @@ because they block release.
 | Pattern | Why it matters |
 | --- | --- |
 | The Apple logo glyph `U+F8FF` (`\uF8FF`, `&#xF8FF;`, or the raw character), an SVG path traced from the Apple logo, or an Apple logo image from any symbol set, next to the word "Pay" | `apple-pay.md › Referring to Apple Pay`: "Never use the Apple logo to represent the name Apple in text." Apple's own table marks "Purchase with  Pay" as wrong. Beside "Pay" inside a black pill, it is a rebuilt Apple Pay button |
-| Icon-library glyphs: `fa-apple-pay`, `fa-cc-apple-pay`, `faApplePay`, `faCcApplePay`, `siApplepay`, `apple-pay` in icon-name props | `apple-pay.md › Apple Pay mark`: "Use only the artwork provided by Apple." Third-party redraws are not Apple's artwork |
+| Icon-library glyphs: `fa-apple-pay`, `fa-cc-apple-pay`, `faApplePay`, `faCcApplePay`, `siApplepay`, `apple-pay` in icon-name props | `apple-pay.md › Apple Pay mark`: "Use only the artwork provided by Apple, with no alterations other than height." Third-party redraws are not Apple's artwork |
 | An image asset named like `apple_pay`, `applepay`, or `apple-pay` (`.png`, `.svg`, `.pdf`, `.webp`) | Compare it with the files in Apple's download from the Apple Pay Marketing Guidelines page. Anything recolored, cropped, re-exported, or redrawn fails `apple-pay.md › Apple Pay mark` |
 | CSS or style props applied to that mark: `width` without `height` only, `border-radius`, `aspect-ratio`, `object-fit: cover`, `filter`, `box-shadow`, `transform`, animations, a removed border | `apple-pay.md › Apple Pay mark`: "no alterations other than height"; no shadows, glows, flips, rotation, or animation |
 | A styled button or tappable view whose label is "Apple Pay", "Pay", or the Apple glyph, built from `<button>`, `<div>`, `TouchableOpacity`, `Pressable`, `ElevatedButton`, `GestureDetector`, `InkWell`, `Button` with a custom label, or `UIButton` | `apple-pay.md › Using Apple Pay buttons`: "Don't create custom Apple Pay button designs or try to replicate the Apple-provided ones." A custom button may start Apple Pay only if it doesn't show "Apple Pay" or the logo (`apple-pay.md › Offering Apple Pay`) |
@@ -62,7 +69,7 @@ button from returning. Suggest one when the project has a test suite.
 
 ## Liquid Glass in code
 
-Load `hig/liquid-glass.md` and apply its review checklist to what the code renders. In code, look
+Load `references/hig/liquid-glass.md` and apply its review checklist to what the code renders. In code, look
 for:
 
 | Pattern | Finding |
@@ -82,7 +89,7 @@ custom imitation over tuning it.
 
 ## iPhone Duo readiness in code
 
-Load `hig/designing-for-iphone-duo.md`. Apple's premise: "If your app uses standard system
+Load `references/hig/designing-for-iphone-duo.md`. Apple's premise: "If your app uses standard system
 components and you've designed it to support resizing, it automatically adapts to the device's
 poses with little adjustment required." The audit looks for code that breaks either half.
 

@@ -1,0 +1,128 @@
+{
+  "skill": "apple-design",
+  "version": "1.0",
+  "scenarios": [
+    {
+      "id": "direct-flutter-home-screen",
+      "kind": "direct",
+      "query": "Review my Flutter app's home screen against Apple's guidelines",
+      "files": [
+        "screenshot of a Flutter mobile home screen"
+      ],
+      "should_trigger": true,
+      "expected_behavior": [
+        "Loads the always-load set (accessibility.md, layout.md, typography.md, color.md, designing-for-ios.md) plus references/cross-platform.md and relevant on-screen component pages.",
+        "Translates Apple vocabulary into Flutter widgets (for example BottomNavigationBar, NavigationBar, AppBar, SafeArea, ThemeData, LayoutBuilder) rather than UIKit or SwiftUI classes.",
+        "Follows the SKILL.md report format (Summary, Critical, Improvements, Craft notes, What works, Platform notes) with severity tags.",
+        "Cites every guideline finding as `file.md › Heading` with a verbatim short quote from a file it opened, or explicitly labels non-guideline points as reviewer judgment."
+      ]
+    },
+    {
+      "id": "indirect-macos-settings",
+      "kind": "indirect",
+      "query": "Does this settings screen follow macOS conventions?",
+      "files": [
+        "screenshot of a desktop settings window"
+      ],
+      "should_trigger": true,
+      "expected_behavior": [
+        "Loads the always-load set for desktop (including designing-for-macos.md) along with settings.md, the-menu-bar.md, and windows.md.",
+        "Evaluates desktop conventions such as fixed-toolbar settings window under the app menu, keyboard accessibility, and pointer states.",
+        "Cites settings.md with exact headings and short quotes."
+      ]
+    },
+    {
+      "id": "trigger-paraphrase-generic",
+      "kind": "trigger_paraphrase",
+      "query": "Is this good UI?",
+      "files": [
+        "screenshot of a mobile or desktop app screen"
+      ],
+      "should_trigger": true,
+      "expected_behavior": [
+        "Triggers the skill without the user naming Apple, HIG, or the skill.",
+        "Establishes context first and explicitly states what a static screenshot cannot verify (for example exact hex contrast ratios, Dynamic Type scaling, keyboard focus, or motion settings) without treating missing data as a finding.",
+        "Applies both the HIG lenses and the studio craft lens (design thesis, point of view, template check)."
+      ]
+    },
+    {
+      "id": "out-of-scope-react-web-landing",
+      "kind": "out_of_scope",
+      "query": "Review my React website's landing page",
+      "files": [
+        "screenshot of a marketing web landing page"
+      ],
+      "should_trigger": true,
+      "expected_behavior": [
+        "Explicitly states the scope boundary from SKILL.md: applies Apple's design principles and foundations (accessibility, color, typography, layout, writing) and the craft lens.",
+        "Does not enforce Apple-native platform conventions such as iOS tab bars, macOS menu bars, or Liquid Glass."
+      ]
+    },
+    {
+      "id": "code-audit-apple-pay",
+      "kind": "code_audit",
+      "query": "Audit this repo for anything App Review would reject in our Apple Pay checkout",
+      "files": [
+        "small repository containing a custom hand-drawn Apple Pay button or altered Apple Pay mark"
+      ],
+      "should_trigger": true,
+      "expected_behavior": [
+        "Follows references/code-audit.md and loads references/hig/apple-pay.md and references/hig/buttons.md.",
+        "Reports any hand-drawn Apple Pay button, Apple logo glyph (U+F8FF) next to Pay, or altered mark as Critical (App Store Review Guideline 4.9).",
+        "Includes exact `path:line` references beside each `apple-pay.md › Heading` citation and recommends the stack-appropriate native Apple Pay button API."
+      ]
+    },
+    {
+      "id": "swift-authoring-settings",
+      "kind": "authoring",
+      "query": "Build a macOS Settings view in SwiftUI with general preferences and a destructive reset button",
+      "files": [
+        "SwiftUI macOS app target"
+      ],
+      "should_trigger": true,
+      "expected_behavior": [
+        "Triggers at authoring time without requiring the user to say 'review' or 'audit'.",
+        "Uses SwiftUI `Settings` scene, semantic Dynamic Type/colors, and keeps destructive actions distinct from `.defaultAction` / prominent style.",
+        "Consults compiled rules via scripts/hig_context.py or opens settings.md and buttons.md directly without loading the entire HIG directory."
+      ]
+    },
+    {
+      "id": "swift-jit-lint-pr",
+      "kind": "swift_lint",
+      "query": "Check my staged SwiftUI changes for Apple HIG accessibility or Liquid Glass issues",
+      "files": [
+        "SwiftUI repository with staged edits containing fixed font sizes and .glassEffect inside a List"
+      ],
+      "should_trigger": true,
+      "expected_behavior": [
+        "Runs scripts/hig_lint.py --staged --max-findings 5 and scripts/hig_context.py --staged --budget 900 instead of loading 30k+ tokens of raw HIG markdown.",
+        "Reports Critical/High Tier-1 findings with exact path:line, SwiftUI fixes, and `file.md › Heading` citations, without overwhelming the output with Craft notes."
+      ]
+    },
+    {
+      "id": "xcode-runtime-accessibility-audit",
+      "kind": "runtime_audit",
+      "query": "Parse our Xcode performAccessibilityAudit .xcresult bundle and tell me the top HIG accessibility fixes",
+      "files": [
+        "Xcode .xcresult bundle or xcodebuild test log containing contrast, hit region, and Dynamic Type audit failures"
+      ],
+      "should_trigger": true,
+      "expected_behavior": [
+        "Runs scripts/hig_runtime_audit.py --xcresult <bundle> --max-findings 5 (or parses the xcodebuild log) instead of guessing contrast or hit-target sizes from code.",
+        "Reports findings in the compact `[HIG-RT-...][SEVERITY] path:line` format with concrete SwiftUI/UIKit fixes and `file.md › Heading` citations."
+      ]
+    },
+    {
+      "id": "negative-backend-swift-pr",
+      "kind": "negative_trigger",
+      "query": "Audit this Swift Vapor networking and SQLite persistence PR for race conditions and SQL injection",
+      "files": [
+        "Swift backend repository with no UIKit, AppKit, or SwiftUI files"
+      ],
+      "should_trigger": false,
+      "expected_behavior": [
+        "Does not trigger the apple-design skill because the request is pure backend/networking/database code with no UI surface."
+      ]
+    }
+  ]
+}

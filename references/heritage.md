@@ -10,6 +10,15 @@ Apple's design principles have been rewritten many times, but the same dozen ide
 every edition. When a design feels wrong and no single current guideline names the problem, the
 cause is usually one of these.
 
+## Contents
+
+- [How to cite it](#how-to-cite-it)
+- [The editions](#the-editions)
+- [The classic principles](#the-classic-principles)
+- [Rules of thumb the editions repeat](#rules-of-thumb-the-editions-repeat)
+- [Superseded advice](#superseded-advice)
+- [Retro and heritage-inspired designs](#retro-and-heritage-inspired-designs)
+
 ## How to cite it
 
 - Cite the current page first. Use this guide for the reasoning behind it, cited as
@@ -18,8 +27,9 @@ cause is usually one of these.
 - Never present a historical rule as current guidance. If it contradicts a page in
   `references/hig/`, the page wins; see [Superseded advice](#superseded-advice).
 - Nothing here is quoted at length. For Apple's exact wording, the archived editions are
-  collected in the community archive `apple-human-interface-guidelines` on GitHub (PDF and EPUB);
-  the edition names below match its file names.
+  collected in the community archive
+  [gingerbeardman/apple-human-interface-guidelines](https://github.com/gingerbeardman/apple-human-interface-guidelines)
+  on GitHub (PDF and EPUB); the edition names below match its file names.
 
 ## The editions
 
@@ -38,7 +48,7 @@ cause is usually one of these.
 
 ## The classic principles
 
-Each principle below lists the editions that stated it, what it asks of a design, the 2026
+Each principle below lists the editions that stated it, what it asks of a design, the current
 principle it lives on in (`design-principles.md`), and the question to ask in a review.
 
 ### Metaphors and mental models

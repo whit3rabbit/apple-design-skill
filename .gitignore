@@ -1,5 +1,6 @@
 .DS_Store
 *.skill
-evals/
 .omc/
 .cache/
+__pycache__/
+*.pyc

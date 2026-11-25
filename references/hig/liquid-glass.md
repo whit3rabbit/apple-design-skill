@@ -6,6 +6,14 @@
 
 Liquid Glass is the dynamic, translucent material Apple introduced in 2025 for the layer of controls and navigation that floats above an app's content. Use this guide whenever a design uses glass, blur, or frosted surfaces, whether it ships on Apple platforms or imitates the look elsewhere.
 
+## Contents
+
+- [The two layers](#the-two-layers)
+- [Apple's rules](#apples-rules)
+- [Review checklist](#review-checklist)
+- [Cross-platform translation](#cross-platform-translation)
+- [Related guidelines](#related-guidelines)
+
 ---
 
 ## The two layers

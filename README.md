@@ -1,207 +1,78 @@
 # Apple Design Skill
 
-An AI design reviewer grounded in Apple's Human Interface Guidelines, packaged as an agent skill.
-It audits and improves mobile and desktop UI, including layouts for the two-display iPhone Duo,
-against 123 HIG pages pulled straight from developer.apple.com, translates Apple's vocabulary for
-**Flutter**, **React Native**, **Tauri**, **Electron**, **SwiftUI**, **UIKit**, and **AppKit**, and
-adds a design-craft lens so the result feels at home on the platform without looking like a
-template.
+An AI design-review skill grounded in Apple's Human Interface Guidelines. 123 HIG pages pulled
+straight from developer.apple.com, a compiled knowledge graph, and 1,412 quote-verified rules
+sit behind every finding.
+
+It audits screenshots and UI across SwiftUI, UIKit, AppKit, Flutter, React Native, Tauri, and
+Electron. Swift projects also get fast Tier-1/2/3 linting that cites exact rules, so an agent
+never needs 30k+ tokens of raw Markdown to say something specific.
 
 ## Install
 
-### With the skills CLI
-
 ```bash
-npx skills add dickwu/apple-design-skill
+npx skills add whit3rabbit/apple-design-skill
 ```
 
-This works for Claude Code, Codex, Cursor, Antigravity, OpenCode, Windsurf, and every other agent the
+This works for Claude Code, Codex, Cursor, Antigravity, and any other agent the
 [skills CLI](https://skills.sh) supports. Useful variations:
 
 ```bash
-npx skills add dickwu/apple-design-skill -a claude-code   # install for one agent only
-npx skills add dickwu/apple-design-skill -g               # user-wide instead of this project
-npx skills add dickwu/apple-design-skill --list           # show what would be installed
-npx skills update apple-design                            # pull the latest version later
+npx skills add whit3rabbit/apple-design-skill -g     # user-wide instead of this project
+npx skills add whit3rabbit/apple-design-skill --list # show what would be installed
+npx skills update apple-design                       # pull the latest version later
 ```
 
-### Claude Code, by hand
+### Examples
 
-Claude Code reads skills from `.claude/skills/` in a project or `~/.claude/skills/` for the user:
-
-```bash
-git clone https://github.com/dickwu/apple-design-skill.git ~/.claude/skills/apple-design
-```
-
-The skill triggers on design-review requests and is also available as `/apple-design`.
-
-### Cursor
-
-Install with `npx skills add dickwu/apple-design-skill -a cursor`, or clone the repository into
-your project and keep its `.cursorrules` next to your own rules. Then ask Cursor:
-*"Review this screen against Apple's HIG"*.
-
-### Codex
-
-Install with `npx skills add dickwu/apple-design-skill -a codex`, or add the repository as a
-submodule and point `AGENTS.md` at it:
-
-```bash
-git submodule add https://github.com/dickwu/apple-design-skill.git .design-rules
-```
-
-```markdown
-## Design reviews
-
-Follow `.design-rules/SKILL.md`, which names every guideline file, and load the relevant
-`.design-rules/references/hig/*.md` files before giving design feedback.
-```
-
-### Antigravity
-
-Install with `npx skills add dickwu/apple-design-skill -a antigravity`, or clone the repository into
-`.agents/skills/apple-design` in your project or global `~/.gemini/antigravity/` configuration:
-
-```bash
-git clone https://github.com/dickwu/apple-design-skill.git .agents/skills/apple-design
-```
-
-You can also keep its `GEMINI.md` next to your own project rules to activate Apple HIG design
-reviews automatically in your Antigravity workspace.
-
-### Other agents
-
-Add the same lines to your rules file (`.windsurfrules`, `.ai-rules`, or similar): follow
-`SKILL.md`, which names every guideline file, and load the relevant `references/hig/*.md`
-files before giving feedback.
-
-## Use it
-
-Ask your agent things like:
-
-- *"Review my Flutter app's home screen against Apple's guidelines"*
-- *"Audit this Tauri app for accessibility"*
-- *"Does this settings screen follow macOS conventions?"*
-- *"Is my Flutter app ready for iPhone Duo's two displays?"*
-- *"This looks generic. Give it a point of view without breaking iOS patterns"*
-- *"How do I do Liquid Glass in React Native?"*
-- *"Check this app icon"*
-- *"Audit this repo for anything App Review would reject in our Apple Pay checkout"*
-- *"Is this onboarding flow asking for permissions the right way?"*
-- *"Give this utility a classic Mac OS look without breaking accessibility"*
-
-## What a review covers
-
-The reviewer reads the relevant guideline files before it writes a word, then works through:
-
-1. **Apple's eight design principles** (reintroduced June 2026): purpose, agency, responsibility,
-   familiarity, flexibility, simplicity, craft, delight.
-2. **Accessibility**, blocking: text scaling, contrast ratios, control sizes, screen readers,
-   keyboard access, motion and transparency settings, with the actual numbers.
-3. **Platform conventions**: tab bars, toolbars, sheets, search, and safe areas on mobile; the
-   menu bar, windows, sidebars, shortcuts, and settings on desktop; light and dark everywhere.
-4. **Visual design and craft**: color, type, layout, icons, materials, motion, and then whether
-   the design has a point of view or is one of the three looks that dominate generated UI.
-5. **Interaction**: loading, feedback, alerts, modality, destructive actions, undo, data entry.
-6. **Content and writing**: labels that say what happens, platform-correct capitalization,
-   errors and empty states that direct people.
-
-Every finding has a What, a Why that cites the guideline file and heading, and a Fix written in
-your framework. Specialized modes cover app icons, accessibility audits, dark mode, Liquid Glass,
-navigation structure, iPhone Duo, Apple Pay, code audits, onboarding and permissions, forms,
-generative AI, widgets and Live Activities, and single components.
-
-**iPhone Duo mode** walks the outer display, the inner display, a partial fold, and Split View
-against Apple's iPhone Duo guidance: layouts built from size classes instead of fixed widths, the
-same functions on both displays, toolbars and tab bars left in the system's default placement,
-and content kept clear of the cameras and the fold. It also flags bars and dialogs drawn by
-Flutter or in JavaScript, which miss the system's automatic adaptations unless the framework or
-your code provides them.
-
-**Code audit mode** reads source instead of screenshots. It searches for Apple Pay buttons and
-marks that Apple didn't draw (the cause of App Store Review Guideline 4.9 rejections), including
-on web checkouts the app opens; Liquid Glass applied to content, stacked, or over-tinted; and code
-that keeps an app from adapting to iPhone Duo, such as fixed widths, custom bars, and overlays
-that ignore the fold. Each match is cited with `path:line` and the guideline it breaks.
-
-**Design heritage** draws on Apple's archived guidelines from the 1987 Apple Desktop Interface to
-the 2014 iOS 7 and OS X editions, summarized in `references/heritage.md`. It traces each of
-today's principles back to its older statement and test (the four consistency questions, the
-list of acceptable modes, "frequent alerts mean a design problem"), lists the advice Apple has
-since replaced so a review never cites it as current, and keeps retro designs (classic Mac OS,
-Platinum, Aqua, early iOS) on today's accessibility floor.
-
-**Improvement mode** goes further: it grounds the design in the product, plans a token system
-(palette, type roles, layout wireframe, one signature element, motion), critiques that plan
-against generic defaults before proposing it, and sequences the fixes from accessibility to
-polish.
-
-## What's inside
+Prompt your agent:
 
 ```text
-apple-design-skill/
-├── SKILL.md                     # The skill: stance, page index, principles, lenses, report format, improvement mode
-├── AGENTS.md                    # Operating manual for agents and contributors
-├── .cursorrules                 # Cursor entry point
-├── GEMINI.md                    # Antigravity entry point
-├── scripts/
-│   └── pull-hig.mjs             # Re-pulls the guidelines from developer.apple.com
-└── references/
-    ├── hig-lookup.md            # Generated index with Apple's summaries, change dates, and omitted pages
-    ├── cross-platform.md        # Apple's names in Flutter, React Native, Tauri, Electron terms
-    ├── code-audit.md            # Code patterns for Apple Pay, Liquid Glass, and iPhone Duo
-    ├── heritage.md              # Apple's classic principles from the 1980 to 2014 editions
-    └── hig/                     # 123 generated pages + 1 curated guide
-        ├── design-principles.md
-        ├── designing-for-iphone-duo.md
-        ├── accessibility.md
-        ├── buttons.md
-        ├── tab-bars.md
-        ├── liquid-glass.md      # Curated: rules, review checklist, cross-platform translation
-        └── ...
+"Review my Flutter app's home screen against Apple's guidelines"
+"Build a macOS Settings view in SwiftUI with a destructive reset button"
+"Check my staged SwiftUI changes for Apple HIG accessibility or Liquid Glass issues"
+"Audit this repo for anything App Review would reject in our Apple Pay checkout"
+"Parse our Xcode performAccessibilityAudit .xcresult bundle and show the top fixes"
+"This looks generic. Give it a point of view without breaking iOS patterns"
 ```
 
-| Section | Files | Includes |
-| --- | --- | --- |
-| Getting started | 6 | Design principles; designing for iOS, iPadOS, macOS, iPhone Duo, and games |
-| Foundations | 16 | Accessibility, color, typography, layout, materials, dark mode, icons, SF Symbols, images, motion, branding, privacy, inclusion, right to left, writing, app icons |
-| Patterns | 24 | Onboarding, launching, loading, feedback, modality, searching, settings, notifications, accounts, data entry, undo, sharing, files, charts, audio, video, haptics, printing, multitasking, full screen, help, drag and drop, ratings, live viewing |
-| Components | 57 | Buttons, menus, the menu bar, toolbars, tab bars, sidebars, split views, sheets, alerts, action sheets, popovers, panels, windows, lists and tables, collections, text fields, pickers, toggles, sliders, steppers, segmented controls, search fields, progress indicators, gauges, labels, charts, widgets, notifications, Live Activities, controls, status bars, and more |
-| Inputs | 7 | Gestures, keyboards, pointing devices, focus and selection, game controls, Apple Pencil, gyroscope and accelerometer |
-| Technologies | 13 | Apple Pay, Apple In-App Purchase, Sign in with Apple, Siri, Maps, augmented reality, machine learning, generative AI, iCloud, AirPlay, NFC, App Clips, VoiceOver |
-| Curated | 1 | Liquid Glass |
-
-Each generated page keeps Apple's wording, headings, tables, notes, and change log, links to its
-source, relabels platform headings by device class (phone, tablet, mobile, desktop), and omits
-the sections that apply only to tvOS, visionOS, or watchOS. The 35 pages Apple publishes for other platforms or Apple-only
-services are listed, with the reason, at the end of `references/hig-lookup.md`.
-
-## Keeping the references current
-
-Apple revises the HIG several times a year. To pull the latest version:
+Or run the Swift three-tier tools directly (Python 3 stdlib only, zero dependencies):
 
 ```bash
-node scripts/pull-hig.mjs
+python3 scripts/hig_lint.py path/to/Views/ --max-findings 5
+python3 scripts/hig_lint.py --diff --repo path/to/MyApp --baseline .hig-baseline.json
+python3 scripts/hig_context.py path/to/SettingsView.swift --scan --budget 850
+python3 scripts/hig_context.py path/to/home_screen.dart --scan --budget 850
+python3 scripts/hig_context.py --query "destructive button sheet" --severity critical,high
+python3 scripts/hig_context.py --slug accessibility,layout,color --no-fixes --budget 900
+python3 scripts/hig_runtime_audit.py --xcresult /tmp/HIGAudit.xcresult --max-findings 5
 ```
 
-Node 18 or newer, no dependencies, about 170 requests. The script crawls Apple's section index,
-renders each page from the same JSON Apple's site uses, writes `references/hig/*.md` and
-`references/hig-lookup.md`, and removes pages Apple has retired. Pass `--cache <dir>` to keep the
-raw JSON for instant re-runs, and `--no-prune` to keep files the crawl no longer finds. Running the
-script twice produces identical output, so a clean `git status` after a second run is the test.
+## How It Works
 
-`AGENTS.md` lists the checks to run before committing a refresh.
+- **Scrape & sync** (`scripts/pull-hig.mjs`): a zero-dependency Node 18+ crawler that fetches Apple's official HIG JSON across all six sections and keeps iOS/iPadOS/macOS guidance verbatim in `references/hig/*.md` (123 pulled pages plus 1 curated `liquid-glass.md`). It relabels platform headings by device class, rewrites cross-links as local links, prunes retired pages safely, and regenerates `references/hig-lookup.md`.
+- **Knowledge graph** (`scripts/build_graph.py` → `rules/graph.json`): compiles all 124 pages into a link graph with 503 typed edges, reverse backlinks, hub centrality scores, and 908 indexed SwiftUI/UIKit/AppKit APIs. `--obsidian .cache/obsidian-vault` exports it as an Obsidian vault.
+- **LLM rule compilation** (`scripts/extract_rules.py` → `rules/hig-rules.json`): runs an offline LLM pass over each page (OpenRouter, Anthropic, OpenAI/Ollama, or Gemini; default Claude Haiku 4.5) and emits three-tier rules (`static`, `semantic`, `visual`) with SwiftUI/UIKit fixes. Caching is per page, keyed by source SHA-256 in `.cache/rule-extract/`, so a refresh only recompiles the pages Apple changed. Every quote is verified verbatim against `references/hig/*.md`; unverified rules are dropped.
+- **Sonnet QC pass** (`scripts/qc_rules.py`): pre-audits compiled rules for invented, deprecated, or overlong SwiftUI/UIKit fixes, then repairs flagged ones through a batched Claude Sonnet 4.5 pass. Cached in `.cache/rule-qc/`. It never alters a verified HIG quote.
+- **Tier-1 linting** (`scripts/hig_lint.py` + `scripts/hig_swift_ast.py`): 24 deterministic checks across `.swift` and `Info.plist` files. Dynamic Type, semantic colors, icon-only VoiceOver labels, Liquid Glass layer misuse, iPhone Duo resizing, Apple Pay guideline 4.9, `TabView` overflow, multi-detent grabbers. Uses the `tree-sitter-swift` AST when installed and falls back to zero-dependency parsing otherwise. Flags cover `--diff`/`--staged`, `.hig-baseline.json` ratcheting, `// hig-ignore: <ID>` suppressions, Xcode warning format, CI `--fail-on`, and SwiftLint export.
+- **Tier-2 UI scanner & JSON search** (`scripts/hig_context.py`): scans `.swift`, `.dart` (Flutter), `.tsx`/`.jsx` (React Native), or `.vue`/`.html`/`.css` (Tauri/Electron/Web) files (or `git diff`, `--query`, `--slug`, `--api`), maps detected components via `rules/graph.json` and the cross-platform equivalency table, and emits a `<900`-token rule card (`--scan` groups best practices under each component + line number, auto-omitting Swift snippets on non-Swift files).
+- **Tier-3 runtime audit bridge** (`scripts/hig_runtime_audit.py`): parses Xcode `performAccessibilityAudit()` results into compact `[HIG-RT-*]` diagnostics. Reads `.xcresult` bundles (via `xcrun xcresulttool`) or plain `xcodebuild` logs. Covers rendered contrast, hit regions, text clipping, and Dynamic Type ground truth. `--print-xctest` prints a drop-in XCTest template.
+- **Visual review & craft** (`SKILL.md` + `references/`): the skill itself. Apple's 8 design principles, 5 audit lenses, cross-platform vocabulary, code-audit patterns, and archived design heritage. 9 trigger/behavior evals in `evals/evals.json` guard the behavior.
 
-## Sponsor
+## Refreshing & Maintaining
 
-If this skill saves you review time, you can support its upkeep through
-[GitHub Sponsors](https://github.com/sponsors/dickwu). One-time and monthly tiers are available,
-and the Sponsor button at the top of the repository leads to the same page.
+```bash
+node scripts/pull-hig.mjs --cache .cache                         # pull latest HIG from Apple
+python3 scripts/extract_rules.py --provider openrouter --concurrency 8  # recompile changed pages only
+python3 scripts/qc_rules.py --provider openrouter --mode flagged # optional Sonnet QC on flagged fixes
+python3 scripts/build_graph.py                                   # rebuild graph.json & preserve LLM rules
+```
 
-## Origin and license
+## Origin & license
 
 The guideline text belongs to Apple Inc. and is reproduced from the public
 [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)
-for AI-assisted design review, with a source link at the top of every file. This project is not
-affiliated with or endorsed by Apple. The skill, the curated guide, and the script are provided
-as they are; use them at your own discretion.
+for AI-assisted design review, with a source link at the top of every file.
+
+This project is not affiliated with or endorsed by Apple. The skill, the curated guide, and the
+scripts are provided as they are; use them at your own discretion.

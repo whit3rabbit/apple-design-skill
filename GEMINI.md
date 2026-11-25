@@ -1,28 +1,24 @@
-When reviewing or improving UI/UX designs, follow the Apple HIG based design review process:
+When reviewing, building, or auditing UI/UX designs, follow `SKILL.md`:
 
-1. Read SKILL.md in full. It defines Apple's eight design principles, the five audit lenses
-   (accessibility, platform conventions, visual design and craft, interaction, writing), the
-   report format, and the design improvement process.
-2. Pick guideline files from SKILL.md: the always-load set, the "Load by what is on screen"
-   table, and the index of every page by Apple's section. references/hig-lookup.md adds Apple's
-   one-line summary of each page; open it when a file name is ambiguous.
-3. Load references/hig/accessibility.md, layout.md, typography.md, color.md, and the platform
-   overview (designing-for-ios.md or designing-for-macos.md), plus references/cross-platform.md
-   unless the app is SwiftUI, UIKit, or AppKit, then 3 to 6 files for what is on screen. Never
-   load the whole directory.
-4. Cite every recommendation as `file.md › Heading` with a short quote.
-5. Use the user's framework vocabulary (Flutter, React Native, Tauri, Electron, SwiftUI, UIKit,
-   AppKit).
-6. Tag each finding Critical, High, Medium, or Low, and use the report format from SKILL.md:
-   Summary, Critical, Improvements, Craft notes, What works, Platform notes.
-7. Cite a guideline or label the point as your own judgment; never invent one. A strong design
-   gets a short review, not a list of manufactured findings.
-8. When reviewing code rather than screenshots, or any app that takes Apple Pay, follow
-   references/code-audit.md and cite path:line beside each guideline.
-9. For a retro or classic Mac or iOS look, or to explain why a guideline exists, load
-   references/heritage.md. It never overrides a current page in references/hig/.
+1. Read `SKILL.md` in full. Never read `rules/hig-rules.json` directly (1.5 MB) and never load the
+   whole `references/hig/` directory.
+2. Query the compiled 3-tier scripts first to save ~97% context tokens:
+   - Tier-1 lint (Swift/`Info.plist`): `python3 scripts/hig_lint.py <path> --max-findings 5`
+   - Tier-2 JIT rules (Swift, diff, or any UI topic): `python3 scripts/hig_context.py <path> --budget 850`
+     (supports `--diff`/`--staged`, `--query "<keywords>"`, `--slug <a,b>`, `--api <Sym>`,
+     `--severity critical,high`, `--no-fixes` for Flutter/RN/visual reviews)
+   - Tier-3 runtime audit: `python3 scripts/hig_runtime_audit.py --xcresult <bundle>`
+   Open raw `references/hig/*.md` files only for spec tables, deep nuance, or full visual audits.
+3. For Swift quick checks or PR lints, use the compact `[HIG-ID][SEVERITY] path:line` format
+   (capped at 3–5 findings; skip Craft notes unless asked). For full visual reviews, use the
+   `SKILL.md` report format (Summary, Critical, Improvements, Craft notes, What works, Platform notes).
+4. Translate Apple terms to the user's framework (load `references/cross-platform.md` for Flutter,
+   React Native, Tauri, or Electron). Cite every guideline as `file.md › Heading` with a verified
+   quote, or label non-guideline points as judgment.
+5. For repo-wide code audits or Apple Pay, follow `references/code-audit.md` and cite `path:line`.
+   For retro Apple looks or historical rationale, load `references/heritage.md`.
 
-Trigger this process when the user asks to: review a design, audit UI/UX, check accessibility,
-improve a layout, adapt an app for iPhone Duo, implement Liquid Glass or glassmorphism, make a
-design less generic, review an app icon, widget, or Live Activity, audit a codebase, check an
-Apple Pay checkout, design a retro Apple look, or evaluate any visual or interaction design.
+Trigger on: UI/UX review, accessibility audit, layout, dark mode, Liquid Glass, iPhone Duo, app
+icons, widgets/Live Activities, building or linting SwiftUI/UIKit/AppKit views, Apple Pay checkout,
+Xcode `performAccessibilityAudit()` results, retro Apple looks, or "make this look less generic".
+Do not trigger on backend, networking, persistence, CLI, or non-UI code reviews.

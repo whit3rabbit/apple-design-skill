@@ -15,7 +15,7 @@
  *
  * Usage:
  *   node scripts/pull-hig.mjs [--out <dir>] [--lookup <file>] [--cache <dir>]
- *                             [--concurrency <n>] [--no-prune]
+ *                             [--concurrency <n>] [--no-prune] [--force-prune]
  *
  * Requires Node 18 or newer (global fetch). No dependencies.
  */
@@ -103,7 +103,7 @@ function parseArgs(argv) {
     out: path.join(REPO_ROOT, 'references', 'hig'),
     lookup: path.join(REPO_ROOT, 'references', 'hig-lookup.md'),
     cache: null,
-    concurrency: 6,
+    concurrency: 6, // Parallel page requests; kept modest so a refresh is polite to Apple's servers
     prune: true,
     forcePrune: false,
   };
@@ -128,6 +128,9 @@ function parseArgs(argv) {
 // Fetching and crawling
 // ---------------------------------------------------------------------------
 
+/** Per-request timeout so a stalled connection fails cleanly instead of hanging a refresh. */
+const FETCH_TIMEOUT_MS = 30_000;
+
 async function fetchPageJson(slug, opts) {
   const cacheFile = opts.cache ? path.join(opts.cache, `${slug}.json`) : null;
   if (cacheFile) {
@@ -138,7 +141,7 @@ async function fetchPageJson(slug, opts) {
     }
   }
   const url = `${DATA_BASE}/${slug}.json`;
-  const response = await fetch(url);
+  const response = await fetch(url, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
   if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
   const text = await response.text();
   if (cacheFile) {
@@ -274,6 +277,46 @@ function renderReference(node, ctx) {
 /** GitHub's heading-to-anchor rule: lowercase, strip punctuation, spaces become hyphens. */
 function githubSlug(text) {
   return text.toLowerCase().replace(/[^\p{L}\p{N}\s_-]/gu, '').trim().replace(/\s+/g, '-');
+}
+
+/** Pages longer than this list their own sections, so a partial read sees the whole page. */
+const CONTENTS_MIN_LINES = 100;
+
+/**
+ * Contents block from a page's H2 and H3 headings; empty for short pages.
+ * Tracks all heading slugs (H1 through H6) so repeated headings match GitHub's `-1`, `-2` anchors.
+ */
+function contentsLines(body, totalLines, title) {
+  if (totalLines <= CONTENTS_MIN_LINES) return [];
+  const seen = new Map([
+    [githubSlug(title), 1],
+    ['contents', 1],
+  ]);
+  let inFence = false;
+  let sawH2 = false;
+  const items = [];
+  for (const line of body) {
+    if (line.startsWith('```')) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    const match = line.match(/^(#{1,6}) (.+)$/);
+    if (!match) continue;
+    const level = match[1].length;
+    const text = match[2];
+    const base = githubSlug(text);
+    const count = seen.get(base) ?? 0;
+    seen.set(base, count + 1);
+    const anchor = count === 0 ? base : `${base}-${count}`;
+    if (level === 2) {
+      sawH2 = true;
+      items.push(`- [${text}](#${anchor})`);
+    } else if (level === 3) {
+      items.push(`${sawH2 ? '  ' : ''}- [${text}](#${anchor})`);
+    }
+  }
+  return items.length ? ['## Contents', '', ...items, '', '---', ''] : [];
 }
 
 /**
@@ -626,7 +669,9 @@ function renderPage(page, included, anchors, staleAnchors) {
     '---',
     '',
   ].filter((line) => line !== null);
-  return collapseBlankLines([...header, ...lines, ...relatedLines].join('\n'));
+  const body = [...lines, ...relatedLines];
+  const totalLines = collapseBlankLines([...header, ...body].join('\n')).trimEnd().split('\n').length;
+  return collapseBlankLines([...header, ...contentsLines(body, totalLines, json.metadata.title), ...body].join('\n'));
 }
 
 // ---------------------------------------------------------------------------
@@ -698,7 +743,16 @@ function renderLookup(included, omitted, pulledOn) {
     `${included.length} guideline files live in \`references/hig/\`, one per page of Apple's Human Interface Guidelines that applies to iOS, iPadOS, or macOS. Each file keeps Apple's text and headings, relabels platform headings by device class (phone, tablet, mobile, desktop), and omits guidance that only applies to tvOS, visionOS, or watchOS. Load only the files a review needs; the "Covers" column is Apple's own summary of the page.`,
     '',
   ];
-  return collapseBlankLines([...intro, ...sectionTables, ...curated, ...omittedTable].join('\n'));
+  const toAnchor = (key) => key.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s/g, '-');
+  const contents = [
+    '## Contents',
+    '',
+    ...groupBySection(included).map((group) => `- [${group.key}](#${toAnchor(group.key)}) (${group.pages.length} pages)`),
+    '- [Curated guides](#curated-guides)',
+    '- [Pages Apple publishes that are not included](#pages-apple-publishes-that-are-not-included)',
+    '',
+  ];
+  return collapseBlankLines([...intro, ...contents, ...sectionTables, ...curated, ...omittedTable].join('\n'));
 }
 
 // ---------------------------------------------------------------------------
@@ -707,7 +761,10 @@ function renderLookup(included, omitted, pulledOn) {
 
 /** Refuse to prune more than this share of the existing generated files unless --force-prune is passed. */
 const PRUNE_SHARE_LIMIT = 0.1;
+/** Minimum prune allowance so small test directories can still drop a handful of retired pages. */
 const PRUNE_COUNT_FLOOR = 3;
+/** Bytes checked for the generated header; a title would have to exceed 300 characters to push the header past this. */
+const GENERATED_HEADER_BYTES = 400;
 
 async function generatedFiles(outDir) {
   const entries = await readdir(outDir);
@@ -715,7 +772,7 @@ async function generatedFiles(outDir) {
     entries
       .filter((name) => name.endsWith('.md'))
       .map(async (name) => {
-        const head = (await readFile(path.join(outDir, name), 'utf8')).slice(0, 400);
+        const head = (await readFile(path.join(outDir, name), 'utf8')).slice(0, GENERATED_HEADER_BYTES);
         return head.includes(`> Source: <${WEB_BASE}/`) && head.includes('\n> Section: ') ? name : null;
       }),
   );
@@ -763,10 +820,13 @@ async function main() {
   const anchors = new Map(included.map((page) => [page.slug, anchorMapFor(page.json)]));
   const staleAnchors = new Set();
 
+  // Render everything before writing anything, so a bad page leaves the folder untouched.
+  const rendered = included.map((page) => [path.join(opts.out, `${page.slug}.md`), renderPage(page, includedSet, anchors, staleAnchors)]);
+  const lookupText = renderLookup(included, omitted, pulledOn);
   await mkdir(opts.out, { recursive: true });
-  await Promise.all(included.map((page) => writeFile(path.join(opts.out, `${page.slug}.md`), renderPage(page, includedSet, anchors, staleAnchors))));
+  await Promise.all(rendered.map(([file, text]) => writeFile(file, text)));
   await mkdir(path.dirname(opts.lookup), { recursive: true });
-  await writeFile(opts.lookup, renderLookup(included, omitted, pulledOn));
+  await writeFile(opts.lookup, lookupText);
 
   const keep = new Set(included.map((page) => `${page.slug}.md`));
   const pruned = opts.prune ? await pruneStaleFiles(opts.out, keep, opts.forcePrune) : { removed: [], refused: [] };
@@ -781,6 +841,7 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error(`pull-hig failed: ${error.message}`);
+  const cause = error.cause ? ` (${error.cause.message ?? error.cause})` : '';
+  console.error(`pull-hig failed: ${error.message}${cause}`);
   process.exit(1);
 });
