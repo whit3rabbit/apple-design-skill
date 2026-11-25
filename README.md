@@ -32,6 +32,7 @@ Prompt your agent:
 "Build a macOS Settings view in SwiftUI with a destructive reset button"
 "Check my staged SwiftUI changes for Apple HIG accessibility or Liquid Glass issues"
 "Audit this repo for anything App Review would reject in our Apple Pay checkout"
+"Audit our DESIGN.md for contrast failures, schema issues, and Apple HIG gaps"
 "Parse our Xcode performAccessibilityAudit .xcresult bundle and show the top fixes"
 "This looks generic. Give it a point of view without breaking iOS patterns"
 ```
@@ -46,6 +47,7 @@ python3 scripts/hig_context.py path/to/home_screen.dart --scan --budget 850
 python3 scripts/hig_context.py --query "destructive button sheet" --severity critical,high
 python3 scripts/hig_context.py --slug accessibility,layout,color --no-fixes --budget 900
 python3 scripts/hig_runtime_audit.py --xcresult /tmp/HIGAudit.xcresult --max-findings 5
+python3 scripts/design_md_audit.py path/to/DESIGN.md --show-contrast --all
 ```
 
 ## How It Works
@@ -57,7 +59,8 @@ python3 scripts/hig_runtime_audit.py --xcresult /tmp/HIGAudit.xcresult --max-fin
 - **Tier-1 linting** (`scripts/hig_lint.py` + `scripts/hig_swift_ast.py`): 24 deterministic checks across `.swift` and `Info.plist` files. Dynamic Type, semantic colors, icon-only VoiceOver labels, Liquid Glass layer misuse, iPhone Duo resizing, Apple Pay guideline 4.9, `TabView` overflow, multi-detent grabbers. Uses the `tree-sitter-swift` AST when installed and falls back to zero-dependency parsing otherwise. Flags cover `--diff`/`--staged`, `.hig-baseline.json` ratcheting, `// hig-ignore: <ID>` suppressions, Xcode warning format, CI `--fail-on`, and SwiftLint export.
 - **Tier-2 UI scanner & JSON search** (`scripts/hig_context.py`): scans `.swift`, `.dart` (Flutter), `.tsx`/`.jsx` (React Native), or `.vue`/`.html`/`.css` (Tauri/Electron/Web) files (or `git diff`, `--query`, `--slug`, `--api`), maps detected components via `rules/graph.json` and the cross-platform equivalency table, and emits a `<900`-token rule card (`--scan` groups best practices under each component + line number, auto-omitting Swift snippets on non-Swift files).
 - **Tier-3 runtime audit bridge** (`scripts/hig_runtime_audit.py`): parses Xcode `performAccessibilityAudit()` results into compact `[HIG-RT-*]` diagnostics. Reads `.xcresult` bundles (via `xcrun xcresulttool`) or plain `xcodebuild` logs. Covers rendered contrast, hit regions, text clipping, and Dynamic Type ground truth. `--print-xctest` prints a drop-in XCTest template.
-- **Visual review & craft** (`SKILL.md` + `references/`): the skill itself. Apple's 8 design principles, 5 audit lenses, cross-platform vocabulary, code-audit patterns, and archived design heritage. 9 trigger/behavior evals in `evals/evals.json` guard the behavior.
+- **Design-system auditor** (`scripts/design_md_audit.py` + `references/design-md-audit.md`): auto-detects and audits Google Stitch `DESIGN.md` (`design.extensions.yaml`), Open Design packages (`manifest.json`, `tokens.css`, `design-tokens.json`, `DESIGN.md`), Claude Design packages (`design-system.json`, `tokens.json`, `README.md`), and Designer-MCP capture packages (`theme.json`, `DESIGN.evidence.json`). Computes real WCAG 2.2 contrast ratios, cross-file token drift, alias resolution, Apple HIG floors (Dynamic Type, Dark Mode parity, hit targets, Reduced Motion), and studio craft.
+- **Visual review & craft** (`SKILL.md` + `references/`): the skill itself. Apple's 8 design principles, 5 audit lenses, cross-platform vocabulary, code-audit patterns, and archived design heritage. 10 trigger/behavior evals in `evals/evals.json` guard the behavior.
 
 ## Refreshing & Maintaining
 

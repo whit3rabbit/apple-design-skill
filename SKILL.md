@@ -7,8 +7,10 @@ description: >
   (SwiftUI, UIKit, AppKit) and cross-platform apps (Flutter, React Native, Tauri, Electron). Use
   for UI audits, HIG compliance, accessibility, dark mode, Liquid Glass, navigation, iPhone Duo,
   Apple Pay, widgets/Live Activities, onboarding, forms, app icons, generative AI UX, App Review
-  design rejections, retro Apple looks, building or linting SwiftUI/UIKit/AppKit views/PR diffs,
-  parsing Xcode `performAccessibilityAudit()` `.xcresult`/logs, or "make this look less generic" /
+  design rejections, retro Apple looks, auditing or validating `DESIGN.md` specs and design-system
+  packages (Google Stitch `DESIGN.md`, `design.extensions.yaml`, Open Design `manifest.json`/`tokens.css`,
+  Claude Design `design-system.json`/`tokens.json`, Designer-MCP capture packages, code-to-spec drift),
+  building or linting SwiftUI/UIKit/AppKit views/PR diffs, parsing Xcode `performAccessibilityAudit()` `.xcresult`/logs, or "make this look less generic" /
   "is this good UI". Do not trigger on backend, networking, database, CLI, or non-UI code reviews.
 ---
 
@@ -28,9 +30,11 @@ tokens). Query the compiled 3-tier scripts first (~97% token savings vs. raw Mar
 | `scripts/hig_context.py` | **Default first step.** Emits a `<900`-token verified rule card from `rules/graph.json` + `rules/hig-rules.json`. Scans `.swift`, `.dart` (Flutter), `.tsx`/`.jsx` (React Native), and `.vue`/`.html`/`.css` (Tauri/Electron/Web) files (`--scan` groups best practices per detected component+line), or accepts `--diff`/`--staged`, `--query "<keywords>"`, `--slug <a,b>`, `--api <Sym>`, `--severity critical,high`, `--no-fixes`. |
 | `scripts/hig_lint.py` | **Tier-1 Swift & `Info.plist` linter** (24 deterministic checks; auto-uses `tree-sitter-swift` AST if installed, else stdlib). Supports `--diff`/`--staged`, `--baseline .hig-baseline.json`, `// hig-ignore: <ID>`, `--max-findings 5`, `--format compact\|xcode\|json`, `--export-swiftlint`. |
 | `scripts/hig_runtime_audit.py` | **Tier-3 Xcode runtime audit bridge.** Parses `performAccessibilityAudit()` `--xcresult <bundle>` or `xcodebuild` logs (`--stdin` / file) into compact HIG diagnostics; `--print-xctest` prints a drop-in test template. |
+| `scripts/design_md_audit.py` | **Deterministic design-system auditor** for Google Stitch `DESIGN.md` (`design.extensions.yaml`), Open Design (`manifest.json`/`tokens.css`/`design-tokens.json`), Claude Design (`design-system.json`/`tokens.json`/`README.md`), and capture packages (`theme.json`/`DESIGN.evidence.json`). Computes WCAG 2.2 contrast ratios, cross-file drift, alias resolution, & Apple HIG token floors. |
 | `references/hig/<page>.md` | 123 pulled Apple HIG pages + `liquid-glass.md`. Open **only** for exact spec tables, full prose nuance, or deep visual audits. Bare names (`buttons.md`) mean `references/hig/buttons.md`. |
 | `references/cross-platform.md` | Load for Flutter, React Native, Tauri, or Electron vocabulary translation. |
 | `references/code-audit.md` | Load for repo-wide code audits covering Apple Pay 4.9, Liquid Glass, and iPhone Duo. |
+| `references/design-md-audit.md` | Load when auditing, validating, authoring, or checking code drift against `DESIGN.md` specs or Open Design packages. |
 | `references/heritage.md` | Load for retro/classic Apple looks or historical rationale; never overrides `references/hig/`. |
 | `references/hig-lookup.md` | One-line summaries, change dates, and omitted-pages list when a page name is ambiguous. |
 
@@ -70,6 +74,7 @@ python3 "$SKILL_DIR/scripts/hig_context.py" --query "destructive button sheet" -
 python3 "$SKILL_DIR/scripts/hig_context.py" --slug accessibility,layout,color --tier all --no-fixes --budget 900 # Visual / Flutter / RN card
 python3 "$SKILL_DIR/scripts/hig_context.py" --api NavigationSplitView,.toolbar --platform macos
 python3 "$SKILL_DIR/scripts/hig_runtime_audit.py" --xcresult <bundle> --max-findings 5                       # Tier-3 Xcode runtime audit
+python3 "$SKILL_DIR/scripts/design_md_audit.py" path/to/DESIGN.md --show-contrast --all                      # Audit DESIGN.md tokens, contrast & HIG
 ```
 
 ### Every page, by Apple's section
@@ -184,6 +189,11 @@ the verdict.
   (Tier-3 `.xcresult`/log). Use compact diagnostic format.
 - **Code audit:** Follow `references/code-audit.md` (Apple Pay, Liquid Glass, iPhone Duo) and cite
   `path:line` beside each guideline.
+- **`DESIGN.md` & design-system package audit:** Load `references/design-md-audit.md` and run
+  `scripts/design_md_audit.py <path-or-dir> --show-contrast --all`. Auto-detects Google Stitch
+  `DESIGN.md` (`design.extensions.yaml`), Open Design packages, Claude Design packages, and
+  Designer-MCP capture packages; validates schema, aliases, cross-file sync, WCAG 2.2 contrast,
+  Dark Mode parity, Apple HIG floors, craft POV, and optional code-to-spec drift.
 - **Accessibility audit:** Run `hig_context.py --slug accessibility,voiceover,typography,color,motion --tier all --no-fixes`
   plus Lens 1, VoiceOver order, keyboard paths, Switch Control, captions, and haptic/visual doubles.
   For native builds with UI tests, run `hig_runtime_audit.py --xcresult <bundle>` (or `--print-xctest`).

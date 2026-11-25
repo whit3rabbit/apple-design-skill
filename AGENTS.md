@@ -32,6 +32,7 @@ a generated lookup table, a compiled HIG knowledge graph and quote-verified rule
    python3 scripts/hig_context.py --query "destructive button sheet" --severity critical,high
    python3 scripts/hig_context.py --slug accessibility,layout,color --no-fixes --budget 900
    python3 scripts/hig_runtime_audit.py --xcresult <bundle> --max-findings 5
+   python3 scripts/design_md_audit.py <path-to-DESIGN.md> --show-contrast --all
    ```
    Open raw `references/hig/*.md` files only when edge-case nuance or spec tables are needed.
 3. For visual/screenshot reviews or cross-platform audits, pick files from `SKILL.md`: the
@@ -62,6 +63,7 @@ a generated lookup table, a compiled HIG knowledge graph and quote-verified rule
 | `references/hig/liquid-glass.md` | Curated Liquid Glass guide; the script never touches it | Yes |
 | `references/cross-platform.md` | Apple's vocabulary and conventions for Flutter, React Native, Tauri, and Electron | Yes |
 | `references/code-audit.md` | Code patterns to search for (Apple Pay, Liquid Glass, iPhone Duo), with citations and replacements | Yes |
+| `references/design-md-audit.md` | Audit rubric, compatibility profiles, and workflow for Google `DESIGN.md`, Open Design, Claude Design, and Designer-MCP capture packages | Yes |
 | `references/heritage.md` | Classic principles from Apple's archived 1980 to 2014 guidelines, summarized in our own words, mapped to today's | Yes |
 | `evals/evals.json` | Evaluation scenarios covering review modes, trigger paraphrases, and scope limits | Yes |
 | `rules/graph.json` | Generated HIG knowledge graph: 124 nodes, cross-file edges, backlinks, hub scores, and Swift/Apple API index | No, re-run `build_graph.py` |
@@ -75,6 +77,7 @@ a generated lookup table, a compiled HIG knowledge graph and quote-verified rule
 | `scripts/hig_lint.py` | Dedicated Tier-1 Swift & `Info.plist` linter with `.hig-baseline.json` ratcheting, `--diff`/`--staged`, `--engine auto\|ast\|regex`, Xcode warnings, CI `--fail-on`, and `--export-swiftlint` | Yes |
 | `scripts/hig_swift_ast.py` | Optional `tree-sitter-swift` AST backend for `hig_lint.py` (gracefully falls back to zero-dep stdlib regex/brace engine when uninstalled) | Yes |
 | `scripts/hig_runtime_audit.py` | Tier-3 Xcode `performAccessibilityAudit()` bridge: parses `.xcresult` bundles (`xcrun xcresulttool`) or `xcodebuild` logs into compact HIG-cited diagnostics, plus `--print-xctest` template | Yes |
+| `scripts/design_md_audit.py` | Deterministic design-system auditor (Google `DESIGN.md`, `design.extensions.yaml`, Open Design `manifest.json`/`tokens.css`, Claude Design `design-system.json`/`tokens.json`, capture packages): computes WCAG 2.2 contrast ratios, cross-file drift, `{token}` aliases, & Apple HIG token floors | Yes |
 
 ## Refreshing the references
 
@@ -135,7 +138,7 @@ its source file in `references/hig/`; unverified rules are dropped automatically
 ```bash
 node --check scripts/pull-hig.mjs
 node scripts/pull-hig.mjs --cache .cache && git status --short   # second run must change nothing
-python3 -m py_compile scripts/hig_swift_catalog.py scripts/build_graph.py scripts/extract_rules.py scripts/qc_rules.py scripts/hig_context.py scripts/hig_lint.py scripts/hig_swift_ast.py scripts/hig_runtime_audit.py
+python3 -m py_compile scripts/hig_swift_catalog.py scripts/build_graph.py scripts/extract_rules.py scripts/qc_rules.py scripts/hig_context.py scripts/hig_lint.py scripts/hig_swift_ast.py scripts/hig_runtime_audit.py scripts/design_md_audit.py
 python3 -c "import json; r = json.load(open('rules/hig-rules.json'))['rules']; assert len(r) == len({x['id'] for x in r})"
 grep -rl 'doc://' references/hig                                  # must print nothing
 diff -q .cursorrules GEMINI.md                                    # must print nothing

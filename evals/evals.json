@@ -113,6 +113,20 @@
       ]
     },
     {
+      "id": "design-md-audit",
+      "kind": "design_md_audit",
+      "query": "Audit this design system package (DESIGN.md, Open Design, or Claude Design) for schema compliance, color contrast, dark mode readiness, and Apple HIG gaps",
+      "files": [
+        "Google DESIGN.md, Open Design package (manifest.json + tokens.css + DESIGN.md), or Claude Design package (design-system.json + tokens.json + README.md)"
+      ],
+      "should_trigger": true,
+      "expected_behavior": [
+        "Loads references/design-md-audit.md and runs scripts/design_md_audit.py --show-contrast --all rather than guessing WCAG contrast ratios.",
+        "Auto-detects the package format (Google DESIGN.md, Open Design, Claude Design, or capture package) and reports exact computed contrast ratios, cross-file drift, alias/schema issues, and Apple HIG gaps (Dynamic Type scaling, display-serif body misuse, hit targets, Reduced Motion).",
+        "Cites verified Apple HIG guidelines (`file.md › Heading`) alongside format-specific rules, and labels brand/template observations clearly as reviewer judgment."
+      ]
+    },
+    {
       "id": "negative-backend-swift-pr",
       "kind": "negative_trigger",
       "query": "Audit this Swift Vapor networking and SQLite persistence PR for race conditions and SQL injection",
